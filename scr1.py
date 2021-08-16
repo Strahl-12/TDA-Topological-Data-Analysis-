@@ -25,13 +25,18 @@ def pointplotter(N, R):
     for i in range(N):
         x = datapoints[i][0]
         y = datapoints[i][1]
-        x1 = copy(x)
-        y1 = copy(y)
         circ = plt.Circle((x, y), R, fill = False)
         plt.gca().add_patch(circ)
-        #area = math.pi * R**2
-        #plt.scatter(x, y, s=area, alpha=0.5)
         plt.scatter(x, y, s = 5)
+
+def pointplotter2(R):
+    for item in datapoints:
+        x = item[0]
+        y = item[1]
+        circ = plt.Circle((x, y), R, fill = False)
+        plt.gca().add_patch(circ)
+        plt.scatter(x, y, s = 5)
+
 
 
 def get_intersections(x0, y0, x1, y1, r):
@@ -63,12 +68,12 @@ def get_intersections(x0, y0, x1, y1, r):
         
         return (x3, y3, x4, y4)
 
-vals = [5, 10, 15, 20, 50]
+vals = [5, 10, 15, 20, 25, 40, 50]
 
 def plotter(R):
     for rad in R:
-        filename = "foo" + str(rad)
-        pointplotter(N, rad)
+        filename = "radius_" + str(rad)
+        pointplotter2(rad)
 
         for point1 in datapoints:
             for point2 in datapoints:
@@ -77,5 +82,11 @@ def plotter(R):
                 else:
                     pass
         plt.savefig(filename)
+        plt.cla()
+
+
+
+
+
 
 plotter(vals)
