@@ -1,0 +1,31 @@
+#Code for intersection of circles
+
+        """a=(r**2-r**2+d**2)/(2*d)
+        h=math.sqrt(r**2-a**2)
+        x2=x0+a*(x1-x0)/d   
+        y2=y0+a*(y1-y0)/d   
+        x3=x2+h*(y1-y0)/d     
+        y3=y2-h*(x1-x0)/d 
+
+        x4=x2-h*(y1-y0)/d
+        y4=y2+h*(x1-x0)/d"""
+
+# ##################################
+
+"""
+for R in vals:
+    pointplotter(N, R)
+
+
+    for point1 in datapoints:
+        for point2 in datapoints:
+            if point1 == point2:
+                pass
+            else:
+                print("Intersections between {} and {} : ".format(point1, point2), get_intersections(point1[0], point1[1], point2[0], point2[1], R))
+                if get_intersections(point1[0], point1[1], point2[0], point2[1], R) != None:
+                    plt.plot([point1[0], point2[0]], [point1[1], point2[1]])
+                else:
+                    pass
+    plt.savefig("foo" + str(now.strftime("%m%d%Y%H:%M:%S")))
+    """
