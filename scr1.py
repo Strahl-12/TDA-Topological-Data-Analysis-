@@ -17,25 +17,18 @@ def data_gen(num_points, min, max):
         datapoints.append(Y)
     return datapoints
 
-datapoints = data_gen(15, 0, 200)
-N = len(datapoints)
+datapoints = data_gen(200, 0, 200)
 
 
-def pointplotter(N, R):
-    for i in range(N):
-        x = datapoints[i][0]
-        y = datapoints[i][1]
-        circ = plt.Circle((x, y), R, fill = False)
-        plt.gca().add_patch(circ)
-        plt.scatter(x, y, s = 5)
-
+fig, (ax1, ax2) = plt.subplots(1, 2)
 def pointplotter2(R):
     for item in datapoints:
         x = item[0]
         y = item[1]
         circ = plt.Circle((x, y), R, fill = False)
-        plt.gca().add_patch(circ)
-        plt.scatter(x, y, s = 5)
+        ax1.add_patch(circ)
+        #plt.gca().add_patch(circ)
+        ax1.scatter(x, y, s = 5)
 
 
 
@@ -63,8 +56,6 @@ def get_intersections(x0, y0, x1, y1, r):
         x4 = (-B - math.sqrt(B**2 - 4 * A * D))/(2*A)
         y3 = M*x3 + C
         y4 = M*x4 + C
-    
-
         
         return (x3, y3, x4, y4)
 
@@ -72,17 +63,19 @@ vals = [5, 10, 15, 20, 25, 40, 50]
 
 def plotter(R):
     for rad in R:
-        filename = "radius_" + str(rad)
+        filename = "test2_" + str(rad)
         pointplotter2(rad)
 
         for point1 in datapoints:
             for point2 in datapoints:
                 if point1 != point2 and get_intersections(point1[0], point1[1], point2[0], point2[1], rad) != None:
-                    plt.plot([point1[0], point2[0]], [point1[1], point2[1]])
+                    ax1.plot([point1[0], point2[0]], [point1[1], point2[1]])
+                    ax2.plot([point1[0], point2[0]], [point1[1], point2[1]])
                 else:
                     pass
-        plt.savefig(filename)
-        plt.cla()
+        fig.savefig(filename)
+        ax1.cla()
+        ax2.cla()
 
 
 
